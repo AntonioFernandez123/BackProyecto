@@ -8,7 +8,13 @@ import com.gestion.notasExamen.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SubjectController {
@@ -44,7 +50,7 @@ public class SubjectController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PutMapping("subject/addStudent")
+    @PatchMapping("subject/addStudent")
     public ResponseEntity<Void> addStudentsToSubject(@RequestBody List<StudentResponseDTO> students, @RequestParam Long idSubject){
         subjectService.addStudentsToSubject(students, idSubject);
         return ResponseEntity.status(HttpStatus.OK).build();
