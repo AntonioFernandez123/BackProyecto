@@ -2,16 +2,8 @@ package com.gestion.notasExamen.entity;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.gestion.notasExamen.dto.StudentResponseDTO;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,7 +34,14 @@ public class SubjectEntity {
     @JoinColumn(name="grade", nullable = true)
     private GradeEntity grade;
 
-    @ManyToMany(mappedBy = "subjects")
-    private List<StudentEntity> students;
-
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(
+            name = "subject_student", joinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "idSubject", nullable = true),
+            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "idStudent", nullable = true)
+    )
+    private List<StudentEntity> students1;
 }

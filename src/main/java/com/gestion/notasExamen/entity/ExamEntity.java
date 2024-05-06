@@ -4,16 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -47,7 +38,15 @@ public class ExamEntity {
     @JoinColumn(name="subject", nullable = true)
     private SubjectEntity subject;
 
-    @ManyToMany(mappedBy = "exams")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(
+            name = "exam_student", joinColumns = @JoinColumn(name = "exam_id", referencedColumnName = "idExam", nullable = true),
+            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "idStudent", nullable = true)
+    )
     private List<StudentEntity> students;
 
 }

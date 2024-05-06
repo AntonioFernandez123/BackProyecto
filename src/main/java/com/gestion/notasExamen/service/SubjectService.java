@@ -57,7 +57,7 @@ public class SubjectService {
                 StudentEntity alu = studentMapper.StudentResponseDTOToStudentEntity(student);
                 listAlu.add(alu);
             }
-            subject.setStudents(listAlu);
+            subject.setStudents1(listAlu);
             subjectRepository.save(subject);
         }
      }
