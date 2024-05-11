@@ -35,8 +35,8 @@ public class TeacherEntity {
     @Column(name="email")
     private String email;
 
-    @Column(name="nrp")
-    private int nrp;
+    @Column(name="userName")
+    private int userName;
 
     @Column(name="dni")
     private String dni;

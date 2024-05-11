@@ -19,7 +19,7 @@ public class TeacherDTO implements Serializable {
     private String lastName;
     private String password;
     private String email;
-    private int nrp;
+    private String userName;
     private String dni;
 
 }

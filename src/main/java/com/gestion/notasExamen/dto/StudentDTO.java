@@ -20,7 +20,7 @@ public class StudentDTO implements Serializable {
     private String lastName;
     private String password;
     private String email;
-    private int nre;
+    private String userName;
     private String dni;
     private List<SubjectResponseDTO> subjects;
     private List<ExamResponseDTO> exams;

@@ -6,7 +6,7 @@ import com.gestion.notasExamen.dto.GradeDTO;
 import com.gestion.notasExamen.entity.GradeEntity;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring" , uses = {TeacherMapper.class, SubjectMapper.class})
+@Mapper(componentModel = "spring" , uses = {TeacherMapper.class})
 public interface GradeMapper {
 
     GradeDTO GradeEntityToGraderDTO(GradeEntity gradeEntity);

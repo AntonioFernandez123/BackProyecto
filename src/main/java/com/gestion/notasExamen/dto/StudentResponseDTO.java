@@ -24,7 +24,7 @@ public class StudentResponseDTO implements Serializable {
     private String lastName;
     private String password;
     private String email;
-    private int nre;
+    private String userName;
     private String dni;
 
 }
