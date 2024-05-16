@@ -7,7 +7,7 @@ import com.gestion.notasExamen.entity.TeacherEntity;
 
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring",  uses = {UserMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, TeacherMapper.class})
 public interface TeacherMapper {
 
     TeacherDTO TeacherEntityToTeacherDTO(TeacherEntity teacherEntity);

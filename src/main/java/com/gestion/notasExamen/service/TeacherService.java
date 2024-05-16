@@ -17,7 +17,7 @@ public class TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
-    public List<TeacherDTO> getAllTeacheres(){
+    public List<TeacherDTO> getAllTeachers(){
         return teacherMapper.TeacherEntityListToTeacherDTOList(teacherRepository.findAll());
     }
 

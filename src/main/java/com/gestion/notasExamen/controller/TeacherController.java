@@ -23,7 +23,7 @@ public class TeacherController {
 
     @GetMapping("teacher/getAllTeachers")
     public ResponseEntity<List<TeacherDTO>> getAllTeachers() {
-        return ResponseEntity.status(HttpStatus.OK).body(teacherService.getAllTeacheres());
+        return ResponseEntity.status(HttpStatus.OK).body(teacherService.getAllTeachers());
     }
 
     @GetMapping("teacher/getTeacherById")

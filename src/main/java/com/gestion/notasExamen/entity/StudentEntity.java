@@ -13,12 +13,23 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name="Student")
 public class StudentEntity extends UserEntity{
 
-    @ManyToMany(mappedBy = "students1",
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long idStudent;
+
+  @Builder
+  public StudentEntity(String name, String lastName, String userName, String password, String email, String dni, long idStudent, List<ExamEntity> exams, List<SubjectEntity> subjects) {
+    super(name, lastName, userName, password, email, dni);
+    this.idStudent = idStudent;
+    this.exams = exams;
+    this.subjects = subjects;
+  }
+
+  @ManyToMany(mappedBy = "students1",
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE

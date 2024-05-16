@@ -6,7 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 public class StudentResponseDTO extends UserDTO {
 
+  private long idStudent;
+
+  @Builder
+  public StudentResponseDTO(String name, String lastName, String password, String email, String userName, String dni, long idStudent) {
+    super(name, lastName, password, email, userName, dni);
+    this.idStudent = idStudent;
+  }
 }
