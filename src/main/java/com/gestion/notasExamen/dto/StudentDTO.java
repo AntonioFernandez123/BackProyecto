@@ -12,16 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class StudentDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class StudentDTO extends UserDTO {
 
-    private long idStudent;
-    private String name;
-    private String lastName;
-    private String password;
-    private String email;
-    private String userName;
-    private String dni;
     private List<SubjectResponseDTO> subjects;
     private List<ExamResponseDTO> exams;
 

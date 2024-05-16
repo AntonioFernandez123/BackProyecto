@@ -16,29 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name="Student")
-public class StudentEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idStudent;
-
-    @Column(name="name")
-    private String name;
-
-    @Column(name="lastName")
-    private String lastName;
-
-    @Column(name="password")
-    private String password;
-
-    @Column(name="email")
-    private String email;
-
-    @Column(name="userName")
-    private String userName;
-
-    @Column(name="dni")
-    private String dni;
+public class StudentEntity extends UserEntity{
 
     @ManyToMany(mappedBy = "students1",
             cascade = {
@@ -53,7 +31,5 @@ public class StudentEntity {
                     CascadeType.MERGE
             })
     private List<ExamEntity> exams;
-
-
 
 }

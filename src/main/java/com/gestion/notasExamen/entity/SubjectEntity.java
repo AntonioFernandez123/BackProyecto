@@ -41,7 +41,7 @@ public class SubjectEntity {
             })
     @JoinTable(
             name = "subject_student", joinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "idSubject", nullable = true),
-            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "idStudent", nullable = true)
+            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "idUser", nullable = true)
     )
     private List<StudentEntity> students1;
 }
