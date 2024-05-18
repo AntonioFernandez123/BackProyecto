@@ -17,19 +17,14 @@ import lombok.NoArgsConstructor;
 @Table(name="Student")
 public class StudentEntity extends UserEntity{
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long idStudent;
-
   @Builder
-  public StudentEntity(String name, String lastName, String userName, String password, String email, String dni, long idStudent, List<ExamEntity> exams, List<SubjectEntity> subjects) {
-    super(name, lastName, userName, password, email, dni);
-    this.idStudent = idStudent;
-    this.exams = exams;
+  public StudentEntity(long idUser, String name, String lastName, String userName, String password, String email, String dni, List<SubjectEntity> subjects, List<ExamEntity> exams) {
+    super(idUser, name, lastName, userName, password, email, dni);
     this.subjects = subjects;
+    this.exams = exams;
   }
 
-  @ManyToMany(mappedBy = "students1",
+  @ManyToMany(mappedBy = "students",
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE

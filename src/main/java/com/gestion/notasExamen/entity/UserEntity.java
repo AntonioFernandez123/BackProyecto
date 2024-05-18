@@ -12,6 +12,10 @@ import lombok.NoArgsConstructor;
 @MappedSuperclass
 public class UserEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idUser;
+
     @Column(name="name")
     private String name;
 

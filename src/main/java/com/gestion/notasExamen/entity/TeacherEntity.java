@@ -12,20 +12,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
+@NoArgsConstructor
 @Table(name="Teacher")
 public class TeacherEntity extends UserEntity{
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long idTeacher;
-
   @Builder
-  public TeacherEntity(String name, String lastName, String userName, String password, String email, String dni, long idTeacher) {
-    super(name, lastName, userName, password, email, dni);
-    this.idTeacher = idTeacher;
+  public TeacherEntity(long idUser, String name, String lastName, String userName, String password, String email, String dni) {
+    super(idUser, name, lastName, userName, password, email, dni);
   }
-
 }

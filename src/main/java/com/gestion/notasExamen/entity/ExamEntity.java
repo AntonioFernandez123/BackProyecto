@@ -45,7 +45,7 @@ public class ExamEntity {
             })
     @JoinTable(
             name = "exam_student", joinColumns = @JoinColumn(name = "exam_id", referencedColumnName = "idExam", nullable = true),
-            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "idStudent", nullable = true)
+            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "idUser", nullable = true)
     )
     private List<StudentEntity> students;
 

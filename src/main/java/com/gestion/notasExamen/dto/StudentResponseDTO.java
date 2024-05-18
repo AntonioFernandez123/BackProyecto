@@ -8,11 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class StudentResponseDTO extends UserDTO {
 
-  private long idStudent;
-
   @Builder
-  public StudentResponseDTO(String name, String lastName, String password, String email, String userName, String dni, long idStudent) {
-    super(name, lastName, password, email, userName, dni);
-    this.idStudent = idStudent;
+  public StudentResponseDTO(Long idUser, String name, String lastName, String password, String email, String userName, String dni) {
+    super(idUser, name, lastName, password, email, userName, dni);
   }
 }
