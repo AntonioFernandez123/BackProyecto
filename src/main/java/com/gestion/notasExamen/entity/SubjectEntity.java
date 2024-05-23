@@ -24,10 +24,10 @@ public class SubjectEntity {
     @Column(name="name")
     private String name;
 
-    @Column(name="shortName")
+    @Column(name="short_name")
     private String shortName;
 
-    @Column(name="hourPerWeek")
+    @Column(name="hour_per_week")
     private int hourPerWeek;
 
     @ManyToOne(fetch= FetchType.LAZY)
