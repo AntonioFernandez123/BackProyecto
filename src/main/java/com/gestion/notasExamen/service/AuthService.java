@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class AuthService {
 
-  private static final String TOKEN = "1h1g9cFN18yv75";
+  private String TOKEN;
 
   @Autowired
   private TeacherRepository teacherRepository;
@@ -33,11 +33,13 @@ public class AuthService {
 
     Optional<StudentEntity> student = studentRepository.findByUserName(user);
     if (student.isPresent() && passwordEncoder.matches(pass, student.get().getPassword())){
+      this.TOKEN = Long.toString(student.get().getIdUser());
       return ResponseEntity.ok(TOKEN);
     }
 
     Optional<TeacherEntity> teacher = teacherRepository.findByUserName(user);
     if(teacher.isPresent() && passwordEncoder.matches(pass, teacher.get().getPassword())){
+      this.TOKEN = Long.toString(student.get().getIdUser());
       return ResponseEntity.ok(TOKEN);
     }
 

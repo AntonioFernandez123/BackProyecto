@@ -1,5 +1,6 @@
 package com.gestion.notasExamen.entity;
 
+import com.gestion.notasExamen.dto.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,5 +34,8 @@ public class UserEntity {
 
     @Column(name="dni")
     private String dni;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
