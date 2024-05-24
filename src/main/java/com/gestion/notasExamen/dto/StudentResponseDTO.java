@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class StudentResponseDTO extends UserDTO {
 
   @Builder
-  public StudentResponseDTO(Long idUser, String name, String lastName, String password, String email, String userName, String dni) {
-    super(idUser, name, lastName, password, email, userName, dni);
+  public StudentResponseDTO(Long idUser, String name, String lastName, String password, String email, String userName, String dni, Role role) {
+    super(idUser, name, lastName, password, email, userName, dni, role);
   }
 }

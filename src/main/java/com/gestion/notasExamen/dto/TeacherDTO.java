@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class TeacherDTO extends UserDTO {
 
   @Builder
-  public TeacherDTO(Long idUser, String name, String lastName, String password, String email, String userName, String dni) {
-    super(idUser, name, lastName, password, email, userName, dni);
+  public TeacherDTO(Long idUser, String name, String lastName, String password, String email, String userName, String dni, Role role) {
+    super(idUser, name, lastName, password, email, userName, dni, role);
   }
 }

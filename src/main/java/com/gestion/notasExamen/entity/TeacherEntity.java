@@ -1,5 +1,6 @@
 package com.gestion.notasExamen.entity;
 
+import com.gestion.notasExamen.dto.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class TeacherEntity extends UserEntity{
 
   @Builder
-  public TeacherEntity(long idUser, String name, String lastName, String userName, String password, String email, String dni) {
-    super(idUser, name, lastName, userName, password, email, dni);
+  public TeacherEntity(long idUser, String name, String lastName, String userName, String password, String email, String dni, Role role) {
+    super(idUser, name, lastName, userName, password, email, dni, role);
   }
 }

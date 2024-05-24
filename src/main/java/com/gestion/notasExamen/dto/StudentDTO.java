@@ -17,9 +17,9 @@ public class StudentDTO extends UserDTO {
     private List<ExamResponseDTO> exams;
 
     @Builder
-    public StudentDTO(Long idUser, String name, String lastName, String password, String email, String userName, String dni, List<SubjectResponseDTO> subjects, List<ExamResponseDTO> exams) {
-        super(idUser, name, lastName, password, email, userName, dni);
-        this.subjects = subjects;
+    public StudentDTO(Long idUser, String name, String lastName, String password, String email, String userName, String dni, Role role, List<ExamResponseDTO> exams, List<SubjectResponseDTO> subjects) {
+        super(idUser, name, lastName, password, email, userName, dni, role);
         this.exams = exams;
+        this.subjects = subjects;
     }
 }

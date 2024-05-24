@@ -2,6 +2,7 @@ package com.gestion.notasExamen.entity;
 
 import java.util.List;
 
+import com.gestion.notasExamen.dto.Role;
 import com.gestion.notasExamen.dto.StudentResponseDTO;
 import com.gestion.notasExamen.dto.SubjectResponseDTO;
 import jakarta.persistence.*;
@@ -18,8 +19,8 @@ import lombok.NoArgsConstructor;
 public class StudentEntity extends UserEntity{
 
   @Builder
-  public StudentEntity(long idUser, String name, String lastName, String userName, String password, String email, String dni, List<SubjectEntity> subjects, List<ExamEntity> exams) {
-    super(idUser, name, lastName, userName, password, email, dni);
+  public StudentEntity(long idUser, String name, String lastName, String userName, String password, String email, String dni, Role role, List<SubjectEntity> subjects, List<ExamEntity> exams) {
+    super(idUser, name, lastName, userName, password, email, dni, role);
     this.subjects = subjects;
     this.exams = exams;
   }
