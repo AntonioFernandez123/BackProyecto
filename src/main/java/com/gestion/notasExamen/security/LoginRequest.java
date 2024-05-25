@@ -1,4 +1,4 @@
-package com.gestion.notasExamen.dto;
+package com.gestion.notasExamen.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

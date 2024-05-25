@@ -1,7 +1,6 @@
-package com.gestion.notasExamen.service;
+package com.gestion.notasExamen.security;
 
 
-import com.gestion.notasExamen.dto.LoginRequest;
 import com.gestion.notasExamen.entity.StudentEntity;
 import com.gestion.notasExamen.entity.TeacherEntity;
 import com.gestion.notasExamen.repository.StudentRepository;
@@ -43,7 +42,7 @@ public class AuthService {
 
     Optional<TeacherEntity> teacher = teacherRepository.findByUserName(user);
     if(teacher.isPresent() && passwordEncoder.matches(pass, teacher.get().getPassword())){
-      this.TOKEN = Long.toString(student.get().getIdUser());
+      this.TOKEN = Long.toString(teacher.get().getIdUser());
       return ResponseEntity.ok(TOKEN);
     }
 

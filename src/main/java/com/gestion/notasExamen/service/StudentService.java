@@ -37,7 +37,7 @@ public class StudentService {
         String passEncoder = pass.encode(stu.getPassword());
         stu.setPassword(passEncoder);
 
-        studentRepository.save(studentMapper.StudentResponseDTOToStudentEntity(student));
+        studentRepository.save(stu);
     }
 
     public void updateStudent(StudentResponseDTO student) {
