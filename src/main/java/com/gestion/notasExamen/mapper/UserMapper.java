@@ -2,6 +2,7 @@ package com.gestion.notasExamen.mapper;
 
 import com.gestion.notasExamen.dto.UserDTO;
 import com.gestion.notasExamen.entity.UserEntity;
+import com.gestion.notasExamen.security.LoginRequest;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface UserMapper {
 
   List<UserDTO> UserEntityListToUserDTOList (List<UserEntity> userEntityList);
 
+  UserEntity userEntityToAuthRequest(LoginRequest loginRequest);
 }

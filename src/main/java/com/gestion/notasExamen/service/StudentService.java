@@ -20,6 +20,7 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
     private PasswordEncoder pass;
 
     public List<StudentDTO> getAllStudents(){

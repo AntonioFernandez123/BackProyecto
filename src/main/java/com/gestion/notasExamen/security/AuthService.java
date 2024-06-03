@@ -3,6 +3,8 @@ package com.gestion.notasExamen.security;
 
 import com.gestion.notasExamen.entity.StudentEntity;
 import com.gestion.notasExamen.entity.TeacherEntity;
+import com.gestion.notasExamen.entity.UserEntity;
+import com.gestion.notasExamen.mapper.UserMapper;
 import com.gestion.notasExamen.repository.StudentRepository;
 import com.gestion.notasExamen.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +29,18 @@ public class AuthService {
   @Autowired
   private StudentRepository studentRepository;
 
+  @Autowired
+  private UserMapper userMapper;
+
   private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
   public ResponseEntity<String> login(LoginRequest request) {
 
-    String user = request.getUserName();
-    String pass = request.getPassword();
+    UserEntity reqUserEntity = userMapper.userEntityToAuthRequest(request);
+    String user = reqUserEntity.getUserName();
+    String pass = reqUserEntity.getPassword();
+    System.out.println(user);
+    System.out.println(pass);
 
     Optional<StudentEntity> student = studentRepository.findByUserName(user);
     if (student.isPresent() && passwordEncoder.matches(pass, student.get().getPassword())){

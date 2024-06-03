@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class ExamController {
 
     @Autowired
@@ -33,7 +34,7 @@ public class ExamController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PatchMapping("/exam/updateExam")
+    @PutMapping("/exam/updateExam")
     public ResponseEntity<Void> updateExam(@RequestBody ExamResponseDTO exam){
         examService.updateExam(exam);
         return ResponseEntity.status(HttpStatus.OK).build();

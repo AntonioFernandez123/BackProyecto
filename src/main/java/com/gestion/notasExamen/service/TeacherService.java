@@ -19,6 +19,7 @@ public class TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
+    @Autowired
     private PasswordEncoder pass;
 
     public List<TeacherDTO> getAllTeachers(){

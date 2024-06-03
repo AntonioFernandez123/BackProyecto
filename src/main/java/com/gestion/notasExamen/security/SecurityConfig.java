@@ -16,7 +16,6 @@ public class SecurityConfig{
     return http
         .csrf(csrf -> csrf
             .disable())
-        .cors((AbstractHttpConfigurer::disable))
         .authorizeRequests()
             .anyRequest().permitAll()
         .and().build();
