@@ -28,14 +28,16 @@ public class StudentEntity extends UserEntity{
   @ManyToMany(mappedBy = "students",
             cascade = {
                     CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    CascadeType.MERGE,
+                    CascadeType.REMOVE
             })
     private List<SubjectEntity> subjects;
 
     @ManyToMany(mappedBy = "students",
             cascade = {
                     CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    CascadeType.MERGE,
+                    CascadeType.REMOVE
             })
     private List<ExamEntity> exams;
 

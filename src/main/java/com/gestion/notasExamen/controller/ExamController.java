@@ -18,8 +18,8 @@ public class ExamController {
     @Autowired
     private ExamService examService;
 
-    @GetMapping("/exam/getAllExames")
-    public ResponseEntity<List<ExamDTO>> getAllExames(){
+    @GetMapping("/exam/getAllExams")
+    public ResponseEntity<List<ExamDTO>> getAllExams(){
         return  ResponseEntity.status(HttpStatus.OK).body(examService.getAllExames());
     }
 

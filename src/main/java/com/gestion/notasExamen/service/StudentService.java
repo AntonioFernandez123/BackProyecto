@@ -7,12 +7,16 @@ import com.gestion.notasExamen.dto.StudentResponseDTO;
 import com.gestion.notasExamen.entity.StudentEntity;
 import com.gestion.notasExamen.mapper.StudentMapper;
 import com.gestion.notasExamen.repository.StudentRepository;
+import com.gestion.notasExamen.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
+
+    @Autowired
+    private SubjectRepository subjectRepository;
 
     @Autowired
     private StudentMapper studentMapper;
@@ -48,6 +52,19 @@ public class StudentService {
     public void deleteStudent(Long id) {
         if(studentRepository.getReferenceById(id) != null) {
             studentRepository.deleteById(id);
+        }
+    }
+
+    public List<StudentDTO> getAllStudentInSubject(Long idSubject){
+        if (subjectRepository.existsById(idSubject)){
+            return studentMapper.StudentEntityListToStudentDTOList(studentRepository.findAllBySubjectId(idSubject));
+        }
+        return null;
+    }
+
+    public void deleteStudentFromSubject(Long idSubject, Long idStudent){
+        if (subjectRepository.existsById(idSubject) && studentRepository.existsById(idStudent)){
+
         }
     }
 

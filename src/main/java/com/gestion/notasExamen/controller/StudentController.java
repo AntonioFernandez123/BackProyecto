@@ -46,4 +46,9 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @GetMapping("/student/getAllStudentInSubject")
+    public ResponseEntity<List<StudentDTO>> getAllStudentInSubject(@RequestParam long idSubject){
+        return  ResponseEntity.status(HttpStatus.OK).body(studentService.getAllStudentInSubject(idSubject));
+    }
+
 }

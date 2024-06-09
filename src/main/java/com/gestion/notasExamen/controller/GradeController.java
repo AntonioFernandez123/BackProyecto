@@ -3,6 +3,7 @@ package com.gestion.notasExamen.controller;
 import java.util.List;
 
 import com.gestion.notasExamen.dto.GradeDTO;
+import com.gestion.notasExamen.dto.SubjectDTO;
 import com.gestion.notasExamen.service.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,11 @@ public class GradeController {
     public ResponseEntity<Void> deleteGrade(@RequestParam long idGrade){
         gradeService.deleteGrade(idGrade);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/grade/getAllGradesWithTeacherId")
+    public ResponseEntity<List<GradeDTO>> getAllGradesWithTeacherId(@RequestParam long idTeacher){
+        return  ResponseEntity.status(HttpStatus.OK).body(gradeService.getAllGradesWithTeacherId(idTeacher));
     }
 
 }

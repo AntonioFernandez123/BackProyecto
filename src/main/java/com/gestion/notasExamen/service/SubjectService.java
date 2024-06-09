@@ -9,12 +9,20 @@ import com.gestion.notasExamen.entity.StudentEntity;
 import com.gestion.notasExamen.entity.SubjectEntity;
 import com.gestion.notasExamen.mapper.StudentMapper;
 import com.gestion.notasExamen.mapper.SubjectMapper;
+import com.gestion.notasExamen.repository.GradeRepository;
 import com.gestion.notasExamen.repository.SubjectRepository;
+import com.gestion.notasExamen.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SubjectService {
+
+    @Autowired
+    private TeacherRepository teacherRepository;
+
+    @Autowired
+    private GradeRepository gradeRepository;
 
     @Autowired
     private SubjectMapper subjectMapper;
@@ -45,6 +53,13 @@ public class SubjectService {
         if(subjectRepository.getReferenceById(id) != null) {
             subjectRepository.deleteById(id);
         }
+    }
+
+    public List<SubjectDTO> getAllSubjectsWithTeacherAndGradeId(Long idTeacher, Long idGrade){
+        if (teacherRepository.existsById(idTeacher) && gradeRepository.existsById(idGrade)){
+            return subjectMapper.SubjectEntityListToSubjectDTOList(subjectRepository.findAllByTeacherAndGradeId(idTeacher,idGrade));
+        }
+        return null;
     }
 
     public void addStudentsToSubject(List<StudentResponseDTO> students, Long idSubject) {
