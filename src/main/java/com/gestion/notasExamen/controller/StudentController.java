@@ -1,5 +1,6 @@
 package com.gestion.notasExamen.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.gestion.notasExamen.dto.StudentDTO;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/api")
 @RestController
@@ -32,6 +34,11 @@ public class StudentController {
     public ResponseEntity<Void> createStudent(@RequestBody StudentResponseDTO student){
         studentService.createStudent(student);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping(value = "/student/createStudentCSV", consumes = {"multipart/form-data"})
+    public ResponseEntity<Integer> createStudentCSV(@RequestPart("file")MultipartFile file) throws IOException {
+        return ResponseEntity.ok(studentService.createStudentCSV(file));
     }
 
     @PutMapping("/student/updateStudent")

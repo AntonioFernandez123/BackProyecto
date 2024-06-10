@@ -2,6 +2,7 @@ package com.gestion.notasExamen.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.gestion.notasExamen.dto.StudentResponseDTO;
 import com.gestion.notasExamen.dto.SubjectDTO;
@@ -10,6 +11,7 @@ import com.gestion.notasExamen.entity.SubjectEntity;
 import com.gestion.notasExamen.mapper.StudentMapper;
 import com.gestion.notasExamen.mapper.SubjectMapper;
 import com.gestion.notasExamen.repository.GradeRepository;
+import com.gestion.notasExamen.repository.StudentRepository;
 import com.gestion.notasExamen.repository.SubjectRepository;
 import com.gestion.notasExamen.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,12 @@ public class SubjectService {
 
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private StudentService studentService;
     
     public List<SubjectDTO> getAllSubjects(){
         return subjectMapper.SubjectEntityListToSubjectDTOList(subjectRepository.findAll());
@@ -67,7 +75,7 @@ public class SubjectService {
         System.out.println(subject);
         List<StudentEntity> listAlu = new ArrayList<>();
 
-        if (subject!= null) {
+        if (subject != null) {
             for (StudentResponseDTO student : students) {
                 StudentEntity alu = studentMapper.StudentResponseDTOToStudentEntity(student);
                 listAlu.add(alu);
@@ -75,6 +83,33 @@ public class SubjectService {
             subject.setStudents(listAlu);
             subjectRepository.save(subject);
         }
-     }
+    }
+
+
+//    public void addStudentsToSubject(List<StudentResponseDTO> students, Long idSubject) {
+//        SubjectEntity subject = subjectRepository.getReferenceById(idSubject);
+//        System.out.println(subject);
+//        List<StudentEntity> listAlu = new ArrayList<>();
+//
+//        if (subject != null) {
+//            for (StudentResponseDTO student : students) {
+//                StudentEntity alu;
+//                Optional<StudentEntity> existingStudent = studentRepository.findByUserName(student.getUserName());
+//
+//                if (existingStudent.isPresent()){
+//                    alu = existingStudent.get();
+////                    alu = studentMapper.StudentResponseDTOToStudentEntity(student);
+//                }
+//                else{
+//                    studentService.createStudent(student);
+//                    alu = studentRepository.findByUserName(student.getUserName()).get();
+////                    alu = studentMapper.StudentResponseDTOToStudentEntity(student);
+//                }
+//                listAlu.add(alu);
+//            }
+//            subject.setStudents(listAlu);
+//            subjectRepository.save(subject);
+//        }
+//     }
 
 }
