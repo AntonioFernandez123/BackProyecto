@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.gestion.notasExamen.dto.ExamDTO;
 import com.gestion.notasExamen.dto.ExamResponseDTO;
+import com.gestion.notasExamen.dto.StudentResponseDTO;
 import com.gestion.notasExamen.service.ExamService;
+import com.gestion.notasExamen.service.Exam_StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class ExamController {
+
+    @Autowired
+    private Exam_StudentService exam_studentService;
 
     @Autowired
     private ExamService examService;
@@ -29,9 +34,8 @@ public class ExamController {
     }
 
     @PostMapping("/exam/createExam")
-    public ResponseEntity<Void> createExam(@RequestBody ExamResponseDTO exam){
-        examService.createExam(exam);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<ExamResponseDTO> createExam(@RequestBody ExamResponseDTO exam){
+        return ResponseEntity.status(HttpStatus.CREATED).body( examService.createExam(exam));
     }
 
     @PutMapping("/exam/updateExam")
@@ -43,6 +47,17 @@ public class ExamController {
     @DeleteMapping("/exam/deleteExam")
     public ResponseEntity<Void> deleteExam(@RequestParam long idExam){
         examService.deleteExam(idExam);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/exam/getAllExamsByIdSubject")
+    public ResponseEntity<List<ExamDTO>> getAllExamsByIdSubject(@RequestParam long idSubject){
+        return  ResponseEntity.status(HttpStatus.OK).body(examService.getAllExamsByIdSubject(idSubject));
+    }
+
+    @PatchMapping("/exam/addStudentsToExam")
+    public ResponseEntity<Void> addStudentsToExam(@RequestBody List<StudentResponseDTO> students, @RequestParam Long idExam){
+        exam_studentService.addStudentsToExam(students, idExam);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

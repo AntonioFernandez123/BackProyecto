@@ -57,12 +57,12 @@ public class StudentService {
   }
 
   public Integer createStudentCSV(MultipartFile file) throws IOException {
-    Set<StudentEntity> students = parseCsv(file);
+    List<StudentEntity> students = parseCsv(file);
     studentRepository.saveAll(students);
     return students.size();
   }
 
-  private Set<StudentEntity> parseCsv(MultipartFile file) throws IOException {
+  private List<StudentEntity> parseCsv(MultipartFile file) throws IOException {
     try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
       HeaderColumnNameMappingStrategy<StudenCsvRepresentation> strategy =
           new HeaderColumnNameMappingStrategy<>();
@@ -85,7 +85,7 @@ public class StudentService {
               .role(csvLine.getRole())
               .build()
           )
-          .collect(Collectors.toSet());
+          .collect(Collectors.toList());
     }
   }
 

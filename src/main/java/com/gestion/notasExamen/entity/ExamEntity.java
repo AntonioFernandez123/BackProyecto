@@ -29,24 +29,16 @@ public class ExamEntity {
     private String description;
 
     @Column(name="date")
-    private LocalDate date;
+    private String date;
 
     @Column(name="hour")
-    private LocalDateTime hour;
+    private String hour;
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="subject", nullable = true)
     private SubjectEntity subject;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(
-            name = "exam_student", joinColumns = @JoinColumn(name = "exam_id", referencedColumnName = "idExam", nullable = true),
-            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "idUser", nullable = true)
-    )
-    private List<StudentEntity> students;
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Exam_StudentEntity> examStudents;
 
 }

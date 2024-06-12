@@ -20,8 +20,8 @@ public class ExamDTO implements Serializable{
     private long idExam;
     private String themes;
     private String description;
-    private LocalDate date;
-    private LocalDateTime hour;
+    private String date;
+    private String hour;
     private SubjectResponseDTO subject;
     private List<StudentResponseDTO> students;
 

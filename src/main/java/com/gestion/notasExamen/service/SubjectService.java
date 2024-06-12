@@ -72,44 +72,14 @@ public class SubjectService {
 
     public void addStudentsToSubject(List<StudentResponseDTO> students, Long idSubject) {
         SubjectEntity subject = subjectRepository.getReferenceById(idSubject);
-        System.out.println(subject);
-        List<StudentEntity> listAlu = new ArrayList<>();
 
         if (subject != null) {
             for (StudentResponseDTO student : students) {
-                StudentEntity alu = studentMapper.StudentResponseDTOToStudentEntity(student);
-                listAlu.add(alu);
+                StudentEntity alu = studentRepository.findById(student.getIdUser()).get();
+                subject.getStudents().add(alu);
             }
-            subject.setStudents(listAlu);
             subjectRepository.save(subject);
         }
     }
-
-
-//    public void addStudentsToSubject(List<StudentResponseDTO> students, Long idSubject) {
-//        SubjectEntity subject = subjectRepository.getReferenceById(idSubject);
-//        System.out.println(subject);
-//        List<StudentEntity> listAlu = new ArrayList<>();
-//
-//        if (subject != null) {
-//            for (StudentResponseDTO student : students) {
-//                StudentEntity alu;
-//                Optional<StudentEntity> existingStudent = studentRepository.findByUserName(student.getUserName());
-//
-//                if (existingStudent.isPresent()){
-//                    alu = existingStudent.get();
-////                    alu = studentMapper.StudentResponseDTOToStudentEntity(student);
-//                }
-//                else{
-//                    studentService.createStudent(student);
-//                    alu = studentRepository.findByUserName(student.getUserName()).get();
-////                    alu = studentMapper.StudentResponseDTOToStudentEntity(student);
-//                }
-//                listAlu.add(alu);
-//            }
-//            subject.setStudents(listAlu);
-//            subjectRepository.save(subject);
-//        }
-//     }
 
 }
