@@ -106,10 +106,4 @@ public class StudentService {
     return null;
   }
 
-//    public void deleteStudentFromSubject(Long idSubject, Long idStudent){
-//        if (subjectRepository.existsById(idSubject) && studentRepository.existsById(idStudent)){
-//
-//        }
-//    }
-
 }

@@ -1,10 +1,13 @@
 package com.gestion.notasExamen.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.gestion.notasExamen.dto.ExamDTO;
 import com.gestion.notasExamen.dto.ExamResponseDTO;
+import com.gestion.notasExamen.dto.Exam_StudentDTO;
 import com.gestion.notasExamen.dto.StudentResponseDTO;
+import com.gestion.notasExamen.entity.Exam_StudentEntity;
 import com.gestion.notasExamen.service.ExamService;
 import com.gestion.notasExamen.service.Exam_StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +42,7 @@ public class ExamController {
     }
 
     @PutMapping("/exam/updateExam")
-    public ResponseEntity<Void> updateExam(@RequestBody ExamResponseDTO exam){
+    public ResponseEntity<Void> updateExam(@RequestBody ExamDTO exam){
         examService.updateExam(exam);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
@@ -59,6 +62,17 @@ public class ExamController {
     public ResponseEntity<Void> addStudentsToExam(@RequestBody List<StudentResponseDTO> students, @RequestParam Long idExam){
         exam_studentService.addStudentsToExam(students, idExam);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PatchMapping("/exam/addNoteToExam")
+    public ResponseEntity<Void> addNoteToExam(@RequestBody Exam_StudentDTO exam_student){
+        exam_studentService.addNoteToExam(exam_student.getStudent(),exam_student.getExam(),exam_student.getNote());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/exam/getAllStudentWithNote")
+    public ResponseEntity<List<Exam_StudentDTO>> getAllStudentWithNote(){
+        return ResponseEntity.status(HttpStatus.OK).body( exam_studentService.getAllStudentWithNote());
     }
 
 }

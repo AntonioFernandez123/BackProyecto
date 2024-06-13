@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gestion.notasExamen.dto.StudentDTO;
 import com.gestion.notasExamen.dto.StudentResponseDTO;
+import com.gestion.notasExamen.entity.Exam_StudentEntity;
 import com.gestion.notasExamen.entity.StudentEntity;
 
 import org.mapstruct.Mapper;
@@ -20,5 +21,7 @@ public interface StudentMapper {
     StudentEntity StudentResponseDTOToStudentEntity(StudentResponseDTO student);
 
     List<StudentDTO> StudentEntityListToStudentDTOList (List<StudentEntity> studentEntityList);
+
+    List<Exam_StudentEntity> StudentDTOListToStudentEntityList (List<StudentResponseDTO> studentDTOList);
 
 }
