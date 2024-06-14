@@ -7,6 +7,7 @@ import com.gestion.notasExamen.dto.SubjectDTO;
 import com.gestion.notasExamen.mapper.GradeMapper;
 import com.gestion.notasExamen.repository.GradeRepository;
 import com.gestion.notasExamen.repository.TeacherRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,7 @@ public class GradeService {
         gradeRepository.save(gradeMapper.GradeDTOToGradeEntity(grade));
     }
 
+    @Transactional
     public void deleteGrade(Long id) {
         if(gradeRepository.getReferenceById(id) != null) {
             gradeRepository.deleteById(id);

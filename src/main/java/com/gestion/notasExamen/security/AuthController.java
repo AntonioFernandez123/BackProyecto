@@ -13,7 +13,7 @@ public class AuthController {
   private final AuthService authService;
 
   @PostMapping("auth/login")
-  public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+  public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequest request) {
     return authService.login(request);
   }
 

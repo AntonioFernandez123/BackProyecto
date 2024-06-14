@@ -34,26 +34,28 @@ public class AuthService {
 
   private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-  public ResponseEntity<String> login(LoginRequest request) {
+  public ResponseEntity<LoginResponseDTO> login(LoginRequest request) {
 
     UserEntity reqUserEntity = userMapper.userEntityToAuthRequest(request);
     String user = reqUserEntity.getUserName();
     String pass = reqUserEntity.getPassword();
-    System.out.println(user);
-    System.out.println(pass);
 
     Optional<StudentEntity> student = studentRepository.findByUserName(user);
     if (student.isPresent() && passwordEncoder.matches(pass, student.get().getPassword())){
-      this.TOKEN = Long.toString(student.get().getIdUser());
-      return ResponseEntity.ok(TOKEN);
+      LoginResponseDTO login = new LoginResponseDTO();
+      login.setToken(Long.toString(student.get().getIdUser()));
+      login.setRole(student.get().getRole());
+      return ResponseEntity.ok(login);
     }
 
     Optional<TeacherEntity> teacher = teacherRepository.findByUserName(user);
     if(teacher.isPresent() && passwordEncoder.matches(pass, teacher.get().getPassword())){
-      this.TOKEN = Long.toString(teacher.get().getIdUser());
-      return ResponseEntity.ok(TOKEN);
+      LoginResponseDTO login = new LoginResponseDTO();
+      login.setToken(Long.toString(teacher.get().getIdUser()));
+      login.setRole(teacher.get().getRole());
+      return ResponseEntity.ok(login);
     }
 
-    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o Contraseña Incorrectos");
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
   }
 }

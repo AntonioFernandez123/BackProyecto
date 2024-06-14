@@ -17,4 +17,5 @@ public interface GradeRepository extends JpaRepository<GradeEntity, Long> {
   List<GradeEntity> findAllByTeacherId(@Param("teacherId") Long teacherId);
 
 
+
 }

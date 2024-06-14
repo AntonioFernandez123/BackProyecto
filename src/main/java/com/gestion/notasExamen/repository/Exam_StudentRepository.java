@@ -18,4 +18,7 @@ public interface Exam_StudentRepository extends JpaRepository<Exam_StudentEntity
   @Query("SELECT e FROM Exam_StudentEntity e WHERE e.exam.idExam = :examId ")
   List<Exam_StudentEntity> findAllWhitExamId(@Param("examId") Long examId);
 
+  @Query("SELECT e FROM Exam_StudentEntity e WHERE e.student.idUser = :studentId ")
+  List<Exam_StudentEntity> findAllWhitStudentId(@Param("studentId") Long studentId);
+
 }

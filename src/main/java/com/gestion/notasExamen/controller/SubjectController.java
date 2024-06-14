@@ -52,6 +52,11 @@ public class SubjectController {
         return  ResponseEntity.status(HttpStatus.OK).body(subjectService.getAllSubjectsWithTeacherAndGradeId(idTeacher, idGrade));
     }
 
+    @GetMapping("/subject/getAllSubjectsWithStudentId")
+    public ResponseEntity<List<SubjectDTO>> getAllSubjectsWithStudentId(@RequestParam long idStudent){
+        return  ResponseEntity.status(HttpStatus.OK).body(subjectService.getAllSubjectsWithStudentId(idStudent));
+    }
+
     @PatchMapping("/subject/addStudent")
     public ResponseEntity<Void> addStudentsToSubject(@RequestBody List<StudentResponseDTO> students, @RequestParam Long idSubject){
         subjectService.addStudentsToSubject(students, idSubject);

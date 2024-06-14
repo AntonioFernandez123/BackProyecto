@@ -75,4 +75,10 @@ public class ExamController {
         return ResponseEntity.status(HttpStatus.OK).body( exam_studentService.getAllStudentWithNote());
     }
 
+    @GetMapping("/exam/getAllExamsByIdStudent")
+    public ResponseEntity<List<Exam_StudentDTO>> getAllExamsByIdStudent(@RequestParam Long idStudent){
+        return ResponseEntity.status(HttpStatus.OK).body( examService.getAllExamsByIdStudent(idStudent));
+    }
+
+
 }

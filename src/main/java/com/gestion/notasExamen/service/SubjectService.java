@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubjectService {
 
+
     @Autowired
     private TeacherRepository teacherRepository;
 
@@ -66,6 +67,13 @@ public class SubjectService {
     public List<SubjectDTO> getAllSubjectsWithTeacherAndGradeId(Long idTeacher, Long idGrade){
         if (teacherRepository.existsById(idTeacher) && gradeRepository.existsById(idGrade)){
             return subjectMapper.SubjectEntityListToSubjectDTOList(subjectRepository.findAllByTeacherAndGradeId(idTeacher,idGrade));
+        }
+        return null;
+    }
+
+    public List<SubjectDTO> getAllSubjectsWithStudentId(Long idStudent){
+        if (studentRepository.existsById(idStudent)){
+            return subjectMapper.SubjectEntityListToSubjectDTOList(subjectRepository.findAllByStudentId(idStudent));
         }
         return null;
     }
